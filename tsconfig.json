@@ -17,8 +17,9 @@
     "emitDecoratorMetadata": true,
     "paths": {
       "@root/*": ["./*"],
-      "@ari/*": ["./ari/*"],
+      "@processes/*": ["./processes/*"],
       "@database/*": ["./database/*"],
+      "@services/*": ["./services/*"],
       "@interfaces/*": ["./interfaces/*"],
       "@config/*": ["./config/*"],
       "@api/*": ["./api/*"]

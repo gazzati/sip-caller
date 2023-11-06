@@ -1,0 +1,6 @@
+{
+  "watch": [".env"],
+  "ext": "js,ts,json,yaml",
+  "ignore": ["src/**/*.spec.ts", "src/**/*.test.ts"],
+  "exec": "concurrently 'yarn dev:consumer' 'yarn dev:processor'"
+}

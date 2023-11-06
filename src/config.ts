@@ -9,6 +9,8 @@ const envVarsSchema = Joi.object({
   ARI_APP: Joi.string().default("app").description("Ari application name"),
   ARI_USER: Joi.string().default("user").description("Ari user"),
   ARI_PASSWORD: Joi.string().default("password").description("Ari password"),
+
+  REDIS_HOST: Joi.string().default("localhost").description("Redis host"),
 })
   .unknown()
   .required()
@@ -26,6 +28,13 @@ const config = {
     app: envVars.ARI_APP,
     user: envVars.ARI_USER,
     password: envVars.ARI_PASSWORD,
+  },
+
+  redis: {
+    host: envVars.REDIS_HOST,
+    keys: {
+      event: "event"
+    }
   }
 }
 

@@ -1,14 +1,14 @@
 import axios from "axios"
 
 import config from "@root/config"
-import logger from "@root/logger"
+import logger from "@root/services/logger"
 
 import type { AxiosInstance, AxiosError } from "axios"
 
 
 interface Error extends AxiosError<{ message?: string }> {}
 
-class Client {
+class Api {
   private base = `http://${config.ari.host}:${config.ari.port}/ari`
   private auth = { username: config.ari.user, password: config.ari.password }
 
@@ -71,4 +71,4 @@ class Client {
   }
 }
 
-export default Client
+export default Api

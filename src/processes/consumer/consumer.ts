@@ -1,17 +1,22 @@
 import { client } from "websocket"
 
+import config from  "@root/config"
+import { AriEventType } from "@root/interfaces/ari"
+
+import redis from "@database/redis"
+import logger from "@services/logger"
+
 import type { connection, Message } from "websocket"
 
-import config from  "./config"
-import logger from "./logger"
+const ARI_EVENTS = Object.values(AriEventType)
 
 class Consumer {
-  private ws: client = new client()
+  private ws = new client()
 
   private url = `ws://${config.ari.host}:${config.ari.port}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
 
-  public start(): void {
-    logger.log("Started")
+  public start() {
+    logger.log("Consumer started")
 
     this.ws.connect(this.url)
 
@@ -43,12 +48,16 @@ class Consumer {
       connection.on("message", (message: Message) => {
         try {
           if (message.type === "utf8") {
-            // const json = JSON.parse(message.utf8Data)
+            const json = JSON.parse(message.utf8Data)
 
-            // if (json.type === AriEventType.ApplicationReplaced) {
-            //   this.logger.info("Application replaced")
-            //   process.exit()
-            // }
+            if (json.type === AriEventType.ApplicationReplaced) {
+              logger.info("Application replaced")
+              process.exit()
+            }
+
+            if (ARI_EVENTS.includes(json.type)) {
+              redis.rpush(config.redis.keys.event, message.utf8Data)
+            }
 
             logger.log(message.utf8Data)
           }
@@ -59,7 +68,7 @@ class Consumer {
     })
   }
 
-  private reconnect(): void {
+  private reconnect() {
     setTimeout(() => {
       logger.info(`Reconnect to ARI`)
       this.ws.connect(this.url)

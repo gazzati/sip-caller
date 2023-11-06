@@ -1,10 +1,10 @@
-import Client from "@ari/client"
-
 import config from "@root/config"
+
+import Api from "./api"
 
 class Ari {
   private app = config.ari.app
-  readonly api = new Client()
+  readonly api = new Api()
 
   public async getChannels(): Promise<Array<any>> {
     return await this.api.get("/channels")
