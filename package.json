@@ -3,12 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "repository": "https://github.com/gazzati/sip-caller.git",
+  "author": "gazzati <gazzaevtimur@gmail.com>",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --quiet src/index.ts",
-    "dev:consumer": "ts-node-dev --respawn --transpile-only --quiet src/consumer.ts"
+    "dev:consumer": "ts-node-dev --respawn --transpile-only --quiet src/consumer.ts",
+    "format": "prettier --write \"src/\"",
+    "lint": "eslint src/**/*.ts --fix",
+    "type": "tsc --project tsconfig.json --noEmit"
   },
   "devDependencies": {
+    "@gazzati/eslint-config-node": "^1.0.8",
+    "@types/module-alias": "^2.0.3",
+    "@types/node": "^20.8.10",
     "@types/websocket": "^1.0.8",
+    "eslint": "^8.53.0",
+    "lint-staged": "^15.0.2",
+    "module-alias": "^2.2.3",
+    "simple-pre-commit": "^1.2.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   },
@@ -16,5 +28,15 @@
     "dotenv": "^16.3.1",
     "joi": "^17.11.0",
     "websocket": "^1.0.34"
+  },
+  "simple-pre-commit": "npx lint-staged",
+  "lint-staged": {
+    "*.{ts,js}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
   }
 }
