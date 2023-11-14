@@ -13,7 +13,8 @@ const ARI_EVENTS = Object.values(AriEventType)
 class Consumer {
   private ws = new client()
 
-  private url = `wss://${config.ari.host}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
+  //private url = `wss://${config.ari.host}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
+  private url = `ws://${config.ari.host}:${config.ari.port}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
 
   public start() {
     logger.log("Consumer started")
