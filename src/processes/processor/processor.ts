@@ -1,3 +1,5 @@
+import { EventsProcessor } from "@processes/processor/events"
+
 import config from "@root/config"
 import redis from "@root/database/redis"
 import { AriEvent } from "@root/interfaces/ari"
@@ -16,28 +18,14 @@ class Processor {
 
     if (response) {
       const [, data] = response
-      const event = JSON.parse(data)
-      const channelId = this.getChannelId(event)
+      const event: AriEvent = JSON.parse(data)
+      const channelId = event.channel?.id || event.peer?.id
 
-      console.log(event)
-      // const channelData = await this.storage.get(channelId)
-
-      // if (channelData && channelData.context) {
-      //   const Processor = this.getProcessor(channelData.context, event)
-      //   if (Processor) new Processor(event, channelData).call()
-      // }
+      const Event = EventsProcessor[event.type]
+      if (Event) new Event(event).call()
     }
 
     this.loop()
-  }
-
-  private getChannelId(event: AriEvent): string {
-    const result = event.channel?.id || event.peer?.id
-    // if ((event as PlaybackFinishedEvent).playback) {
-    //   result = (event as PlaybackFinishedEvent).playback.target_uri.split(":").pop()
-    // }
-
-    return result || ""
   }
 }
 

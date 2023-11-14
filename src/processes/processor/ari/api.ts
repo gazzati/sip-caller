@@ -9,7 +9,7 @@ import type { AxiosInstance, AxiosError } from "axios"
 interface Error extends AxiosError<{ message?: string }> {}
 
 class Api {
-  private base = `http://${config.ari.host}:${config.ari.port}/ari`
+  private base = `https://${config.ari.host}/ari`
   private auth = { username: config.ari.user, password: config.ari.password }
 
   readonly instance: AxiosInstance

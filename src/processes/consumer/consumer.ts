@@ -13,7 +13,7 @@ const ARI_EVENTS = Object.values(AriEventType)
 class Consumer {
   private ws = new client()
 
-  private url = `ws://${config.ari.host}:${config.ari.port}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
+  private url = `wss://${config.ari.host}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
 
   public start() {
     logger.log("Consumer started")
@@ -58,8 +58,6 @@ class Consumer {
             if (ARI_EVENTS.includes(json.type)) {
               redis.rpush(config.redis.keys.event, message.utf8Data)
             }
-
-            logger.log(message.utf8Data)
           }
         } catch (error) {
           logger.error(`Parsing error: ${(error as Error).message}`)
