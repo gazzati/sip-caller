@@ -1,4 +1,4 @@
-import "../../aliases"
+import "./aliases"
 
 import Consumer from '@processes/consumer/consumer';
 import Processor from '@processes/processor/processor';
