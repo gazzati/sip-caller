@@ -1,7 +1,8 @@
 import Ari from "@processes/processor/ari"
 
-import type {AriEvent} from "@interfaces/ari"
 import Storage from "@root/storage"
+
+import type {AriEvent} from "@interfaces/ari"
 
 abstract class EventBase {
   public ari = new Ari()

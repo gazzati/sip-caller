@@ -10,6 +10,7 @@
     "dev": "cross-env nodemon",
     "dev:consumer": "ts-node-dev --respawn --transpile-only --quiet src/processes/consumer/index.ts",
     "dev:processor": "ts-node-dev --respawn --transpile-only --quiet src/processes/processor/index.ts",
+    "dev:talker": "ts-node-dev --respawn --transpile-only --quiet src/processes/talker/index.ts",
     "format": "prettier --write \"src/\"",
     "lint": "eslint src/**/*.ts --fix",
     "type": "tsc --project tsconfig.json --noEmit"
