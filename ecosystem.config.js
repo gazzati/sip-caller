@@ -12,7 +12,7 @@ module.exports = {
       name: "PROCESSOR",
       namespace: "sip",
       script: "build/processes/processor/index.js",
-      instances: "6",
+      instances: "1",
       exec_mode: "cluster",
       watch: false,
     }
