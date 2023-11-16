@@ -33,7 +33,8 @@ class Api {
       const response = await this.instance.get(url)
       return response.data
     } catch (error) {
-      throw error as AxiosError
+      //throw error as AxiosError
+      console.error(error)
     }
   }
 
@@ -42,7 +43,7 @@ class Api {
       const response = await this.instance.post(url, body)
       return response.data
     } catch (error) {
-      throw error as AxiosError
+      console.error(error)
     }
   }
 
@@ -51,7 +52,7 @@ class Api {
       const response = await this.instance.delete(url)
       return response.data
     } catch (error) {
-      throw error as AxiosError
+      console.error(error)
     }
   }
 

@@ -17,12 +17,11 @@
     "emitDecoratorMetadata": true,
     "paths": {
       "@root/*": ["./*"],
-      "@processes/*": ["./processes/*"],
       "@database/*": ["./database/*"],
-      "@services/*": ["./services/*"],
       "@interfaces/*": ["./interfaces/*"],
-      "@config/*": ["./config/*"],
-      "@api/*": ["./api/*"]
+      "@processes/*": ["./processes/*"],
+      "@scopes/*": ["./scopes/*"],
+      "@services/*": ["./services/*"],
     },
     "typeRoots": ["./node_modules/@types", "./typings/"]
   },

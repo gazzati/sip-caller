@@ -5,7 +5,7 @@ export class ChannelDestroyed extends EventBase {
     const channel = await this.storage.get(this.channelId)
     if(!channel?.masterChannelId) return
 
-    console.log(`Dst channel ${this.channelId} destroyed`)
+    this.logger.info(`Dst channel ${this.channelId} destroyed`)
 
     this.ari.removeChannel(channel.masterChannelId)
   }

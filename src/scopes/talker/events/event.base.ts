@@ -1,12 +1,14 @@
-import Ari from "@processes/processor/ari"
+import Ari from "@root/ari"
+import Storage from "@root/scopes/talker/storage"
 
-import Storage from "@root/storage"
+import Logger, {Service} from "@services/logger"
 
 import type {AriEvent} from "@interfaces/ari"
 
 abstract class EventBase {
   public ari = new Ari()
   public storage = new Storage()
+  public logger = new Logger(Service.Talker)
 
   public event: AriEvent
   public channelId: string
@@ -17,16 +19,7 @@ abstract class EventBase {
     this.event = event
     this.exten = event?.channel?.dialplan?.exten || ""
     this.number = event?.channel?.caller?.number || ""
-    this.channelId = this.getChannelId()
-  }
-
-  private getChannelId(): string {
-    const result = this.event.channel?.id || this.event.peer?.id
-    // if ((event as PlaybackFinishedEvent).playback) {
-    //   result = (event as PlaybackFinishedEvent).playback.target_uri.split(":").pop()
-    // }
-
-    return result || ""
+    this.channelId = this.event.channel?.id || this.event.peer?.id || ""
   }
 }
 

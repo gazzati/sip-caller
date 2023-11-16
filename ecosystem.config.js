@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "CONSUMER",
       namespace: "sip",
-      script: "build/processes/consumer/index.js",
+      script: "build/processes/consumer.js",
       instances: "1",
       exec_mode: "cluster",
       watch: false
@@ -11,7 +11,7 @@ module.exports = {
     {
       name: "PROCESSOR",
       namespace: "sip",
-      script: "build/processes/processor/index.js",
+      script: "build/processes/processor.js",
       instances: "1",
       exec_mode: "cluster",
       watch: false,

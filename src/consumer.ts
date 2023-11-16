@@ -4,7 +4,7 @@ import config from  "@root/config"
 import { AriEventType } from "@root/interfaces/ari"
 
 import redis from "@database/redis"
-import logger from "@services/logger"
+import Logger, {Service} from "@services/logger"
 
 import type { connection, Message } from "websocket"
 
@@ -12,12 +12,13 @@ const ARI_EVENTS = Object.values(AriEventType)
 
 class Consumer {
   private ws = new client()
+  private logger = new Logger(Service.Consumer)
 
   private url = `wss://${config.ari.host}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
   //private url = `ws://${config.ari.host}:${config.ari.port}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
 
   public start() {
-    logger.log("Consumer started")
+    this.logger.info("Started")
 
     this.ws.connect(this.url)
 
@@ -26,7 +27,7 @@ class Consumer {
     })
 
     this.ws.on("connect", (connection: connection) => {
-      logger.info('Successfully connected to ARI')
+      this.logger.info('Successfully connected to ARI')
 
       if (typeof process.send === "function") {
         process.send("ready")
@@ -37,12 +38,12 @@ class Consumer {
       }
 
       connection.on("error", error => {
-        logger.error(error)
+        this.logger.error(error)
         this.reconnect()
       })
 
       connection.on("close", code => {
-        logger.error(`Connection close: ${code}`)
+        this.logger.error(`Connection close: ${code}`)
         this.reconnect()
       })
 
@@ -52,7 +53,7 @@ class Consumer {
             const json = JSON.parse(message.utf8Data)
 
             if (json.type === AriEventType.ApplicationReplaced) {
-              logger.info("Application replaced")
+              this.logger.info("Application replaced")
               process.exit()
             }
 
@@ -61,7 +62,7 @@ class Consumer {
             }
           }
         } catch (error) {
-          logger.error(`Parsing error: ${(error as Error).message}`)
+          this.logger.error(`Parsing error: ${(error as Error).message}`)
         }
       })
     })
@@ -69,7 +70,7 @@ class Consumer {
 
   private reconnect() {
     setTimeout(() => {
-      logger.info(`Reconnect to ARI`)
+      this.logger.info(`Reconnect to ARI`)
       this.ws.connect(this.url)
     }, 5000)
   }

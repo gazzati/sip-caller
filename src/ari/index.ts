@@ -10,6 +10,10 @@ class Ari {
     return await this.api.get("/channels")
   }
 
+  public async getChannelDetails(channelId: string): Promise<any> {
+    return await this.api.get(`/channels/${channelId}`)
+  }
+
   public async createChannel(
     endpoint = "",
     channelId: string,

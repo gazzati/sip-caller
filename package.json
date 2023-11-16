@@ -1,6 +1,6 @@
 {
   "name": "sip-caller",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "index.js",
   "license": "MIT",
   "repository": "https://github.com/gazzati/sip-caller.git",
@@ -8,9 +8,8 @@
   "scripts": {
     "build": "gulp build",
     "dev": "cross-env nodemon",
-    "dev:consumer": "ts-node-dev --respawn --transpile-only --quiet src/processes/consumer/index.ts",
-    "dev:processor": "ts-node-dev --respawn --transpile-only --quiet src/processes/processor/index.ts",
-    "dev:talker": "ts-node-dev --respawn --transpile-only --quiet src/processes/talker/index.ts",
+    "dev:consumer": "ts-node-dev --respawn --transpile-only --quiet src/processes/consumer.ts",
+    "dev:processor": "ts-node-dev --respawn --transpile-only --quiet src/processes/processor.ts",
     "format": "prettier --write \"src/\"",
     "lint": "eslint src/**/*.ts --fix",
     "type": "tsc --project tsconfig.json --noEmit"
@@ -41,6 +40,7 @@
   },
   "dependencies": {
     "axios": "^1.6.0",
+    "dayjs": "^1.11.10",
     "dotenv": "^16.3.1",
     "ioredis": "^5.3.2",
     "joi": "^17.11.0",

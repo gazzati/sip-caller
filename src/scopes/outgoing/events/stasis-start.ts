@@ -10,11 +10,12 @@ export class StasisStart extends EventBase  {
     const bridgeId = uuidv1()
 
     const channel = await this.ari.createChannel(`PJSIP/${this.exten}`, channelId)
-    console.log(`Create channel to PJSIP/${this.exten}`)
-    if(!channel) return console.error("channel is not created")
+    this.logger.info(`Create channel to PJSIP/${this.exten}`)
+
+    if(!channel) return console.error("Channel is not created")
 
     const bridge = await this.ari.createBridge(bridgeId)
-    if(!bridge) return console.error("bridge is not created")
+    if(!bridge) return console.error("Bridge is not created")
 
     this.storage.save(this.channelId, {
       bridgeId: bridge.id,
