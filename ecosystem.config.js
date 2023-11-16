@@ -15,16 +15,6 @@ module.exports = {
       instances: "6",
       exec_mode: "cluster",
       watch: false,
-      env: {
-        NODE_ENV: "production"
-      },
-      env_production: {
-        NODE_ENV: "production"
-      }
-      name: "METRIC",
-      namespace: "core",
-      script: "build/processes/metric.js",
-      watch: false
     }
   ]
 }
