@@ -17,6 +17,7 @@
     "emitDecoratorMetadata": true,
     "paths": {
       "@root/*": ["./*"],
+      "@api/*": ["./api/*"],
       "@database/*": ["./database/*"],
       "@interfaces/*": ["./interfaces/*"],
       "@processes/*": ["./processes/*"],

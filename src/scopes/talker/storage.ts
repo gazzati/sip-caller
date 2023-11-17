@@ -15,6 +15,11 @@ class Storage {
     return data ? JSON.parse(data) : null
   }
 
+  public async getCount(): Promise<number> {
+    const data = await redis.keys(`${this.prefix}:*`)
+    return data?.length || 0
+  }
+
   public async remove(channelId: string): Promise<any> {
     return await redis.del(`${this.prefix}:${channelId}`)
   }

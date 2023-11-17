@@ -11,6 +11,8 @@ const envVarsSchema = Joi.object({
   ARI_PASSWORD: Joi.string().default("password").description("Ari password"),
 
   REDIS_HOST: Joi.string().default("localhost").description("Redis host"),
+
+  API_PORT: Joi.string().default(3003).description("API host"),
 })
   .unknown()
   .required()
@@ -35,7 +37,9 @@ const config = {
     keys: {
       event: "event"
     }
-  }
+  },
+
+  apiPort: envVars.API_PORT
 }
 
 export default config

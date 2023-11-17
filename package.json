@@ -10,6 +10,7 @@
     "dev": "cross-env nodemon",
     "dev:consumer": "ts-node-dev --respawn --transpile-only --quiet src/processes/consumer.ts",
     "dev:processor": "ts-node-dev --respawn --transpile-only --quiet src/processes/processor.ts",
+    "dev:api": "ts-node-dev --respawn --transpile-only --quiet src/processes/api.ts",
     "format": "prettier --write \"src/\"",
     "lint": "eslint src/**/*.ts --fix",
     "type": "tsc --project tsconfig.json --noEmit"
@@ -39,9 +40,11 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@fastify/sensible": "^5.5.0",
     "axios": "^1.6.0",
     "dayjs": "^1.11.10",
     "dotenv": "^16.3.1",
+    "fastify": "^4.24.3",
     "ioredis": "^5.3.2",
     "joi": "^17.11.0",
     "merge-deep": "^3.0.3",

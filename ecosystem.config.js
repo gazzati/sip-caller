@@ -15,6 +15,14 @@ module.exports = {
       instances: "1",
       exec_mode: "cluster",
       watch: false,
+    },
+    {
+      name: "API",
+      namespace: "sip",
+      script: "build/processes/api.js",
+      instances: "1",
+      exec_mode: "cluster",
+      watch: false,
     }
   ]
 }
