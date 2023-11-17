@@ -15,6 +15,7 @@ enum Service {
   Processor = "Processor",
   Outgoing = "Outgoing call",
   Talker = "Talker call",
+  Scripts = "Scripts"
 }
 
 interface Log {

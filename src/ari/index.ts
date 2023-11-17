@@ -32,8 +32,17 @@ class Ari {
     } catch {}
   }
 
+  public async getBridges(): Promise<Array<any>> {
+    return await this.api.get(`/bridges`)
+  }
+
   public async createBridge(bridgeId: string): Promise<any> {
     return await this.api.post(`/bridges?bridgeId=${bridgeId}&type=mixing`)
+  }
+
+
+  public async removeBridge(bridgeId: string): Promise<void> {
+    return await this.api.delete(`/bridges/${bridgeId}`)
   }
 
   public async addChannelsToBridge(bridgeId: string, channels: Array<string>): Promise<void | Error> {
