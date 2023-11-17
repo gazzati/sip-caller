@@ -1,7 +1,7 @@
 import axios from "axios"
 
 import config from "@root/config"
-import logger from "@root/services/logger"
+import Logger, {Service} from "@root/services/logger"
 
 import type { AxiosInstance, AxiosError } from "axios"
 
@@ -11,6 +11,8 @@ interface Error extends AxiosError<{ message?: string }> {}
 class Api {
   private base = `https://${config.ari.host}/ari`
   private auth = { username: config.ari.user, password: config.ari.password }
+
+  private logger = new Logger(Service.Processor)
 
   readonly instance: AxiosInstance
 
@@ -63,7 +65,7 @@ class Api {
         const error = e as Error
 
         if (error?.response?.data?.message?.includes("Auth")) {
-          logger.error(error.response.data.message)
+          this.logger.error(error.response.data.message)
         }
 
         return Promise.reject(error)
