@@ -1,8 +1,8 @@
 import Storage from "@scopes/talker/storage"
 
-import type { StatResponse } from "./stat.interface"
+import type { StatResponse } from "./main.interface"
 
-class StatService {
+class MainService {
   private talkerStorage = new Storage()
 
   public async getStats(): Promise<StatResponse> {
@@ -14,4 +14,4 @@ class StatService {
   }
 }
 
-export default StatService
+export default MainService
