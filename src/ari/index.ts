@@ -1,12 +1,14 @@
 import config from "@root/config"
 
+import type {AriChannel} from '@interfaces/ari';
+
 import Api from "./api"
 
 class Ari {
   private app = config.ari.app
   readonly api = new Api()
 
-  public async getChannels(): Promise<Array<any>> {
+  public async getChannels(): Promise<Array<AriChannel>> {
     return await this.api.get("/channels")
   }
 
