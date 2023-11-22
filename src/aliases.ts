@@ -7,5 +7,5 @@ moduleAlias.addAliases({
   "@interfaces": `${__dirname}/interfaces`,
   "@processes": `${__dirname}/processes`,
   "@scopes": `${__dirname}/scopes`,
-  "@services": `${__dirname}/services`,
+  "@services": `${__dirname}/services`
 })

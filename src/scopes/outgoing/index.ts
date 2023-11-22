@@ -15,7 +15,7 @@ const EventsProcessor: EventMap = {
   [AriEventType.StasisStart]: StasisStart,
   [AriEventType.StasisEnd]: StasisEnd,
   [AriEventType.ChannelStateChange]: ChannelStateChange,
-  [AriEventType.ChannelDestroyed]: ChannelDestroyed,
+  [AriEventType.ChannelDestroyed]: ChannelDestroyed
 }
 
 export default EventsProcessor

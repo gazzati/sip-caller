@@ -24,8 +24,8 @@ export class StasisStart extends EventBase {
 
       const bridgedAt = dayjs().toDate()
 
-      this.storage.save(this.channelId, {bridgeId: bridge.id, dstChannelId, bridgedAt})
-      this.storage.save(dstChannelId, {bridgeId: bridge.id, dstChannelId: this.channelId, bridgedAt})
+      this.storage.save(this.channelId, { bridgeId: bridge.id, dstChannelId, bridgedAt })
+      this.storage.save(dstChannelId, { bridgeId: bridge.id, dstChannelId: this.channelId, bridgedAt })
 
       await this.ari.addChannelsToBridge(bridge.id, [this.channelId, dstChannelId])
       await this.ari.answer(this.channelId)
@@ -41,13 +41,13 @@ export class StasisStart extends EventBase {
 
   private async getDstChannelId(): Promise<string | null> {
     const pendingTalkerChannels = await this.storage.getTalkerPendingChannels()
-    if(!pendingTalkerChannels.length) return null
+    if (!pendingTalkerChannels.length) return null
 
     const ariChannels = await this.ari.getChannels()
-    if(!ariChannels.length) return null
+    if (!ariChannels.length) return null
 
     const ariChannelsIds = ariChannels.reduce((acc, channel) => {
-      if(channel.state !== "Ring") return acc
+      if (channel.state !== "Ring") return acc
       return [...acc, channel.id]
     }, [])
 

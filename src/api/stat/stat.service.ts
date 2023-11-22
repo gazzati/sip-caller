@@ -2,7 +2,7 @@ import Storage from "@scopes/talker/storage"
 
 import type { StatResponse } from "./stat.interface"
 
-class StatService  {
+class StatService {
   private talkerStorage = new Storage()
 
   public async getStats(): Promise<StatResponse> {

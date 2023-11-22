@@ -1,5 +1,5 @@
 export interface TalkerChannelData {
-    bridgeId: string
-    dstChannelId: string
-    bridgedAt: Date
+  bridgeId: string
+  dstChannelId: string
+  bridgedAt: Date
 }

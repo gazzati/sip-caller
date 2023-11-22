@@ -1,21 +1,23 @@
 import { client } from "websocket"
 
-import config from  "@root/config"
+import config, { Env } from "@root/config"
 import { AriEventType } from "@root/interfaces/ari"
 
 import redis from "@database/redis"
-import Logger, {Service} from "@services/logger"
+import Logger, { Service } from "@services/logger"
 
 import type { connection, Message } from "websocket"
 
 const ARI_EVENTS = Object.values(AriEventType)
 
+const baseUrl =
+  config.env === Env.Production ? `ws://${config.ari.host}:${config.ari.port}` : `wss://${config.ari.host}`
+
 class Consumer {
   private ws = new client()
   private logger = new Logger(Service.Consumer)
 
-  private url = `wss://${config.ari.host}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
-  //private url = `ws://${config.ari.host}:${config.ari.port}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
+  private url = `${baseUrl}/ari/events?api_key=${config.ari.user}:${config.ari.password}&app=${config.ari.app}`
 
   public start() {
     this.logger.info("Started")
@@ -27,7 +29,7 @@ class Consumer {
     })
 
     this.ws.on("connect", (connection: connection) => {
-      this.logger.info('Successfully connected to ARI')
+      this.logger.info("Successfully connected to ARI")
 
       if (typeof process.send === "function") {
         process.send("ready")

@@ -33,7 +33,7 @@ class Storage {
   }
 
   public async getTalkerPendingChannels(): Promise<Array<string>> {
-    return await redis.lrange("talker-channels", 0, -1) || []
+    return (await redis.lrange("talker-channels", 0, -1)) || []
   }
 }
 

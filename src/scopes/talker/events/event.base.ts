@@ -1,9 +1,9 @@
 import Ari from "@root/ari"
 import Storage from "@root/scopes/talker/storage"
 
-import Logger, {Service} from "@services/logger"
+import Logger, { Service } from "@services/logger"
 
-import type {AriEvent} from "@interfaces/ari"
+import type { AriEvent } from "@interfaces/ari"
 
 abstract class EventBase {
   public ari = new Ari()

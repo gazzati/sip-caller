@@ -2,10 +2,10 @@ import dayjs from "dayjs"
 
 import EventBase from "./event.base"
 
-export class StasisEnd extends EventBase  {
+export class StasisEnd extends EventBase {
   public async call() {
     const channel = await this.storage.get(this.channelId)
-    if(!channel?.dstChannelId) return
+    if (!channel?.dstChannelId) return
 
     this.ari.removeChannel(channel.dstChannelId)
 

@@ -1,15 +1,17 @@
 import axios from "axios"
 
-import config from "@root/config"
-import Logger, {Service} from "@root/services/logger"
+import config, { Env } from "@root/config"
+import Logger, { Service } from "@root/services/logger"
 
 import type { AxiosInstance, AxiosError } from "axios"
-
 
 interface Error extends AxiosError<{ message?: string }> {}
 
 class Api {
-  private base = `https://${config.ari.host}/ari`
+  private base =
+    config.env === Env.Production
+      ? `http://${config.ari.host}:${config.ari.port}/ari`
+      : `https://${config.ari.host}/ari`
   private auth = { username: config.ari.user, password: config.ari.password }
 
   private logger = new Logger(Service.Processor)
@@ -20,9 +22,9 @@ class Api {
     this.instance = axios.create({
       baseURL: this.base,
       timeout: 10_000,
-      auth:  this.auth,
+      auth: this.auth,
       headers: {
-        Accept: "application/json",
+        Accept: "application/json"
         // ...(options?.headers && options.headers)
       }
     })

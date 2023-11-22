@@ -19,7 +19,7 @@ const cleanUpBridges = async () => {
       const createdAt = dayjs(bridge.creationtime)
       const hoursAgo = dayjs().diff(createdAt, "hours")
 
-      if ((hoursAgo > 10 && !bridge.channels.length)) {
+      if (hoursAgo > 10 && !bridge.channels.length) {
         // if (bridge.channels.length) {
         //   await ari.removeChannelsFromBridge(bridge.id, bridge.channels)
         // }
@@ -30,7 +30,7 @@ const cleanUpBridges = async () => {
     }
 
     process.exit()
-  } catch (error){
+  } catch (error) {
     logger.error(error)
     process.exit()
   }

@@ -35,11 +35,11 @@ class Logger {
   }
 
   public info(message: string, eventId?: string) {
-    this.log({message, eventId})
+    this.log({ message, eventId })
   }
 
   public error(message: any, eventId?: string) {
-    this.log({message: String(message), eventId, isError: true})
+    this.log({ message: String(message), eventId, isError: true })
   }
 
   private log({ message, eventId, isError }: Log): void {
@@ -49,7 +49,9 @@ class Logger {
     const date = `${this.padZeros(today.getDate())}.${this.padZeros(today.getMonth() + 1)}.${this.padZeros(
       today.getFullYear()
     )}`
-    const time = `${this.padZeros(today.getHours())}:${this.padZeros(today.getMinutes())}:${this.padZeros(today.getSeconds())}`
+    const time = `${this.padZeros(today.getHours())}:${this.padZeros(today.getMinutes())}:${this.padZeros(
+      today.getSeconds()
+    )}`
 
     // if (process.env.NODE_ENV === "test") return
 
@@ -60,7 +62,9 @@ class Logger {
 
     // eslint-disable-next-line no-console
     console.log(
-      `${Color.Cyan}${date} ${time}${Color.Reset} ${this.getServiceColor(this.service)}[${this.service}]${Color.Reset}:  ${spaces}${textColor}${prettyMessage}${Color.Reset}`
+      `${Color.Cyan}${date} ${time}${Color.Reset} ${this.getServiceColor(this.service)}[${this.service}]${
+        Color.Reset
+      }:  ${spaces}${textColor}${prettyMessage}${Color.Reset}`
     )
   }
 
@@ -100,4 +104,4 @@ class Logger {
 }
 
 export default Logger
-export {Service}
+export { Service }

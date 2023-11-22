@@ -1,5 +1,5 @@
 import "../aliases"
 
-import {start } from "@api/index"
+import { start } from "@api/index"
 
 start()

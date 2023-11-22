@@ -1,10 +1,10 @@
-import { v1 as uuidv1, } from "uuid"
+import { v1 as uuidv1 } from "uuid"
 
 import EventBase from "./event.base"
 
-export class StasisStart extends EventBase  {
+export class StasisStart extends EventBase {
   public async call() {
-    if(!this.event.args?.length) return
+    if (!this.event.args?.length) return
 
     const channelId = uuidv1()
     const bridgeId = uuidv1()
@@ -12,10 +12,10 @@ export class StasisStart extends EventBase  {
     const channel = await this.ari.createChannel(`PJSIP/${this.exten}`, channelId)
     this.logger.info(`Create channel to PJSIP/${this.exten}`)
 
-    if(!channel) return console.error("Channel is not created")
+    if (!channel) return console.error("Channel is not created")
 
     const bridge = await this.ari.createBridge(bridgeId)
-    if(!bridge) return console.error("Bridge is not created")
+    if (!bridge) return console.error("Bridge is not created")
 
     this.storage.save(this.channelId, {
       bridgeId: bridge.id,

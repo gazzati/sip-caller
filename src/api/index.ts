@@ -7,8 +7,9 @@ import fastify from "fastify"
 import config from "@root/config"
 
 const app = fastify({
-  logger: {// TODO: add own logger
-    level: 'error'
+  logger: {
+    // TODO: add own logger
+    level: "error"
   }
   //ignoreTrailingSlash: true,
 })

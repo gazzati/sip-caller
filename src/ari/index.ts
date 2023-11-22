@@ -14,11 +14,7 @@ class Ari {
     return await this.api.get(`/channels/${channelId}`)
   }
 
-  public async createChannel(
-    endpoint = "",
-    channelId: string,
-    variables?: { [key: string]: string }
-  ): Promise<any> {
+  public async createChannel(endpoint = "", channelId: string, variables?: { [key: string]: string }): Promise<any> {
     return await this.api.post(`/channels/create?endpoint=${endpoint}&app=${this.app}`, {
       formats: "ulaw,alaw",
       channelId,
@@ -39,7 +35,6 @@ class Ari {
   public async createBridge(bridgeId: string): Promise<any> {
     return await this.api.post(`/bridges?bridgeId=${bridgeId}&type=mixing`)
   }
-
 
   public async removeBridge(bridgeId: string): Promise<void> {
     return await this.api.delete(`/bridges/${bridgeId}`)

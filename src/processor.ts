@@ -4,7 +4,7 @@ import TalkerEventsProcessor from "@scopes/talker"
 import config from "@root/config"
 
 import redis from "@database/redis"
-import Logger, {Service} from "@services/logger"
+import Logger, { Service } from "@services/logger"
 
 import { AriEvent } from "@interfaces/ari"
 
@@ -24,7 +24,7 @@ class Processor {
       const event: AriEvent = JSON.parse(data)
 
       const channelId = event.channel?.id || event.peer?.id
-      if(!channelId) return this.loop()
+      if (!channelId) return this.loop()
 
       const Event = this.getEvent(event)
       if (Event) new Event(event).call()
@@ -34,8 +34,8 @@ class Processor {
   }
 
   private getEvent(event: AriEvent) {
-      if(event.channel?.dialplan.context === "talker") return TalkerEventsProcessor[event.type]
-      return OutgoingEventsProcessor[event.type]
+    if (event.channel?.dialplan.context === "talker") return TalkerEventsProcessor[event.type]
+    return OutgoingEventsProcessor[event.type]
   }
 }
 

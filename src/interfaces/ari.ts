@@ -21,16 +21,16 @@ export enum ChannelState {
 }
 
 export interface AriChannel {
-    id: string
-    name: string
-    state?: string
-    caller: { name: string; number: string }
-    connected: { name: string; number: string }
-    accountcode: string
-    dialplan: AriDialplan
-    creationtime: Date
-    language: string
-  }
+  id: string
+  name: string
+  state?: string
+  caller: { name: string; number: string }
+  connected: { name: string; number: string }
+  accountcode: string
+  dialplan: AriDialplan
+  creationtime: Date
+  language: string
+}
 
 export interface AriDialplan {
   context: string
