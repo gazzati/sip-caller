@@ -8,7 +8,7 @@ class VkService {
   private baseUrl = `https://${config.vk.host}/method`
 
   public async getCities(search: string): Promise<Array<City>> {
-    const response = await this.request("database.getCities", `count=5&need_all=0${search ? `&q=${search}` : ""}`)
+    const { response } = await this.request("database.getCities", `count=5&need_all=0${search ? `&q=${search}` : ""}`)
     return response?.items || []
   }
 
