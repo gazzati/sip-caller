@@ -17,6 +17,10 @@ const envVarsSchema = Joi.object({
   ARI_USER: Joi.string().default("user").description("Ari user"),
   ARI_PASSWORD: Joi.string().default("password").description("Ari password"),
 
+  VK_HOST: Joi.string().default("host").description("VK API host"),
+  VK_VERSION: Joi.string().default("1").description("VK API version"),
+  VK_TOKEN: Joi.string().default("token").description("VK API token"),
+
   REDIS_HOST: Joi.string().default("localhost").description("Redis host"),
 
   API_PORT: Joi.string().default(3003).description("API host")
@@ -39,6 +43,12 @@ const config = {
     app: envVars.ARI_APP,
     user: envVars.ARI_USER,
     password: envVars.ARI_PASSWORD
+  },
+
+  vk: {
+    host: envVars.VK_HOST,
+    v: envVars.VK_VERSION,
+    token: envVars.VK_TOKEN,
   },
 
   redis: {
