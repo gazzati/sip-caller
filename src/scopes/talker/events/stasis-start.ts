@@ -49,10 +49,10 @@ export class StasisStart extends EventBase {
 
   private async getDstChannel(): Promise<AriChannel | null> {
     const pendingTalkerChannels = await this.storage.getTalkerPendingChannels()
-    if (!pendingTalkerChannels.length) return null
+    if (!pendingTalkerChannels?.length) return null
 
     const ariChannels = await this.ari.getChannels()
-    if (!ariChannels.length) return null
+    if (!ariChannels?.length) return null
 
     const relevantChannels = ariChannels.reduce((acc: Array<AriChannel>, channel: AriChannel) => {
       if (channel.state !== "Ring" || !pendingTalkerChannels.includes(channel.id) || channel.id === this.channelId) return acc

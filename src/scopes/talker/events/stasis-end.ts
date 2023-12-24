@@ -7,8 +7,7 @@ export class StasisEnd extends EventBase {
     const channel = await this.storage.get(this.channelId)
     if (!channel?.dstChannelId) return
 
-    const dstChannel = await this.ari.getChannelDetails(channel.dstChannelId)
-    if(dstChannel) this.ari.removeChannel(channel.dstChannelId)
+    this.ari.removeChannel(channel.dstChannelId)
 
     this.storage.remove(channel.dstChannelId)
     this.storage.remove(this.channelId)

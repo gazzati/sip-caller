@@ -8,11 +8,13 @@ class Ari {
   private app = config.ari.app
   readonly api = new Api()
 
-  public async getChannels(): Promise<Array<AriChannel>> {
-    return await this.api.get("/channels")
+  public async getChannels(): Promise<Array<AriChannel> | undefined> {
+    try {
+      return await this.api.get("/channels")
+    } catch {}
   }
 
-  public async getChannelDetails(channelId: string): Promise<any> {
+  public async getChannelDetails(channelId: string): Promise<AriChannel | undefined> {
     try {
     return await this.api.get(`/channels/${channelId}`)
     } catch {}
