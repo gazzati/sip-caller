@@ -29,7 +29,7 @@ class Logger {
   private maxWordSize
   private service
 
-  constructor(service: string, maxWordSize = 20) {
+  constructor(service: string, maxWordSize = 12) {
     this.service = service
     this.maxWordSize = maxWordSize
   }

@@ -22,7 +22,8 @@ export class StasisStart extends EventBase {
     const dstChannelIp = dstChannel?.caller.name || ""
 
     this.storage.removeTalkerPendingChannel(this.channelId)
-    this.logger.info(`Start call between ${this.channelId}(${ip}) and ${dstChannelId}(${dstChannelIp}) ✨`)
+    // this.logger.info(`Start call between ${this.channelId}(${ip}) and ${dstChannelId}(${dstChannelIp}) ✨`)
+    this.logger.info(`Start call between ${this.channelId} and ${dstChannelId} ✨`)
 
     try {
       const bridgeId = uuidv1()
