@@ -14,7 +14,7 @@ enum Service {
   Consumer = "Consumer",
   Processor = "Processor",
   Outgoing = "Outgoing call",
-  Talker = "Talker call",
+  Talker = "Talker",
   Api = "Api",
   Scripts = "Scripts"
 }
