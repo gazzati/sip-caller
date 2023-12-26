@@ -7,7 +7,7 @@ import EventBase from "./event.base"
 
 export class StasisStart extends EventBase {
   public async call() {
-    this.logger.info(`Start for channel ${this.channelId} 🚀`)
+    this.logger.info(`Search pair for channel ${this.channelId} ✨`)
 
     const ip = this.event.channel?.caller.name || ""
 
@@ -15,15 +15,15 @@ export class StasisStart extends EventBase {
 
     if (!dstChannel) {
       this.storage.addTalkerPendingChannel(this.channelId)
-      return this.logger.info(`Not found match for ${this.channelId} 🔄`)
+      return this.logger.info(`Channel ${this.channelId} added to queue ⌛`)
     }
 
     const dstChannelId = dstChannel.id
     const dstChannelIp = dstChannel?.caller.name || ""
 
     this.storage.removeTalkerPendingChannel(this.channelId)
-    // this.logger.info(`Start call between ${this.channelId}(${ip}) and ${dstChannelId}(${dstChannelIp}) ✨`)
-    this.logger.info(`Start call between ${this.channelId} and ${dstChannelId} ✨`)
+    // this.logger.info(`Start call between ${this.channelId}(${ip}) and ${dstChannelId}(${dstChannelIp}) 🚀`)
+    this.logger.info(`Start call between ${this.channelId} and ${dstChannelId} 🚀`)
 
     try {
       const bridgeId = uuidv1()

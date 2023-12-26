@@ -13,7 +13,7 @@ export class StasisEnd extends EventBase {
     this.storage.remove(this.channelId)
 
     const duration = dayjs(dayjs()).diff(dayjs(channel.bridgedAt), "second")
-    // this.logger.info(`End call for channel ${this.channelId}(${channel.ip}) ✅. Duration - ${duration} seconds`)
-    this.logger.info(`End call for channel ${this.channelId} ✅. Duration - ${duration} seconds`)
+    // this.logger.info(`End call for channel ${this.channelId}(${channel.ip}) ✅. Duration - ${duration} s.`)
+    this.logger.info(`End call for channel ${this.channelId} ✅. Duration - ${duration}s.`)
   }
 }
